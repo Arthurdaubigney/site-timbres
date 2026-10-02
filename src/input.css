@@ -209,6 +209,34 @@
     transform: translateY(-4px);
   }
 
+  /* Bandeau défilant */
+  .marquee {
+    position: relative;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    gap: 2rem;
+    padding: 1rem 1rem 2rem;
+    animation: marquee-scroll 55s linear infinite;
+  }
+  .marquee:hover .marquee-track,
+  .marquee:focus-within .marquee-track,
+  .marquee.is-paused .marquee-track {
+    animation-play-state: paused;
+  }
+  .marquee-item {
+    flex: none;
+    width: clamp(15rem, 22vw, 19rem);
+  }
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(-100% / 3)); }
+  }
+
   /* Accordéon FAQ — transitions.dev (accordion) */
   .t-acc-panel {
     display: grid;
@@ -277,6 +305,21 @@
   .btn .arrow,
   .expert-card img {
     transition: none !important;
+  }
+  .marquee {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+    scroll-snap-type: x proximity;
+  }
+  .marquee-track {
+    animation: none !important;
+  }
+  .marquee-item {
+    scroll-snap-align: start;
+  }
+  .marquee-item[aria-hidden="true"] {
+    display: none;
   }
   .js .t-stagger-line,
   .js .reveal {

@@ -68,6 +68,17 @@
     syncBar();
   }
 
+  /* Bandeau défilant : bouton pause (WCAG 2.2.2) */
+  var mt = d.getElementById('marquee-toggle');
+  if (mt) {
+    var mq = mt.closest('section').querySelector('.marquee');
+    mt.addEventListener('click', function () {
+      var paused = mq.classList.toggle('is-paused');
+      mt.setAttribute('aria-pressed', String(paused));
+      mt.textContent = paused ? 'Reprendre le défilement' : 'Mettre le défilement en pause';
+    });
+  }
+
   var y = d.getElementById('annee');
   if (y) y.textContent = new Date().getFullYear();
 })();
