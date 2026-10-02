@@ -60,6 +60,7 @@
     @apply h-px w-8 bg-current opacity-70;
   }
   .on-dark .eyebrow,
+  .page-hero .eyebrow,
   .eyebrow-dark {
     @apply text-or-300;
   }
@@ -134,6 +135,78 @@
 
   .chip {
     @apply inline-flex items-center rounded-full border border-white/25 px-3.5 py-1 text-[0.82rem] tracking-wide text-ivoire-100;
+  }
+
+  /* En-tête de page interne */
+  .page-hero {
+    @apply relative isolate overflow-hidden bg-nuit-900 pb-16 pt-32 text-ivoire-100 sm:pb-20 sm:pt-40;
+  }
+
+  /* Corps de texte éditorial (pages SEO et guides) */
+  .prose-doc {
+    @apply text-nuit-800;
+    max-width: 44rem;
+  }
+  .prose-doc > * + * {
+    margin-top: 1.25rem;
+  }
+  .prose-doc h2 {
+    @apply font-display text-[clamp(1.7rem,3vw,2.35rem)] font-light leading-[1.15] text-nuit-900;
+    margin-top: 3rem;
+  }
+  .prose-doc h3 {
+    @apply font-display text-[1.4rem] font-normal leading-snug text-nuit-900;
+    margin-top: 2.2rem;
+  }
+  .prose-doc p,
+  .prose-doc li {
+    @apply text-nuit-700;
+  }
+  .prose-doc ul,
+  .prose-doc ol {
+    @apply space-y-2 pl-5;
+  }
+  .prose-doc ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  .prose-doc ul > li {
+    position: relative;
+    padding-left: 1.5rem;
+  }
+  .prose-doc ul > li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.72em;
+    width: 0.7rem;
+    height: 1px;
+    background: #B8924A;
+  }
+  .prose-doc ol {
+    list-style: decimal;
+  }
+  .prose-doc ol > li::marker {
+    @apply font-display text-or-700;
+  }
+  .prose-doc a {
+    @apply font-medium text-or-700 underline decoration-or-400/50 underline-offset-4 hover:decoration-or-700;
+  }
+  .prose-doc strong {
+    @apply font-semibold text-nuit-900;
+  }
+  .callout {
+    @apply rounded-[1.25rem] border border-or-400/40 bg-ivoire-50 p-6 sm:p-7;
+  }
+  .callout p {
+    @apply text-nuit-800;
+  }
+  .card-link {
+    @apply relative flex h-full flex-col rounded-[1.5rem] bg-ivoire-50 p-7 shadow-soft;
+    transition: transform var(--duration-fast) var(--ease-smooth-out);
+  }
+  .card-link:hover {
+    transform: translateY(-4px);
   }
 
   /* Accordéon FAQ — transitions.dev (accordion) */

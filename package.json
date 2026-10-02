@@ -2,10 +2,13 @@
   "name": "expertise-philatelie",
   "version": "1.0.0",
   "private": true,
-  "description": "Site vitrine Expertise Philatélie - estimation et rachat de timbres rares",
+  "description": "Site Expertise Philatélie - estimation et rachat de timbres rares",
   "scripts": {
-    "build": "tailwindcss -i ./src/input.css -o ./dist/style.css --minify",
-    "dev": "tailwindcss -i ./src/input.css -o ./dist/style.css --watch"
+    "build:pages": "node scripts/build.js",
+    "build:css": "tailwindcss -i ./src/input.css -o ./dist/style.css --minify",
+    "build": "npm run build:pages && npm run build:css",
+    "dev": "npm run build:pages && tailwindcss -i ./src/input.css -o ./dist/style.css --watch",
+    "serve": "node scripts/serve.js"
   },
   "devDependencies": {
     "tailwindcss": "^3.4.17"

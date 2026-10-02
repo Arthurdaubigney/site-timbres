@@ -1,0 +1,48 @@
+  <header id="header" class="fixed inset-x-0 top-0 z-50 border-b border-transparent transition-[background-color,border-color,backdrop-filter] duration-300">
+    <div class="container-x flex h-[4.5rem] items-center justify-between">
+      <a href="/" class="flex items-center gap-3 text-ivoire-50" aria-label="Expertise Philatélie — accueil">
+        <span class="grid h-9 w-9 place-items-center rounded-[0.6rem] border border-or-300/60 text-or-300">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="16" stroke-dasharray="1.6 2.2"/><path d="M9 15l2-3 2 2 2-4"/></svg>
+        </span>
+        <span class="font-display text-[1.2rem] font-medium tracking-tight">Expertise <span class="italic text-or-300">Philatélie</span></span>
+      </a>
+
+      <nav class="hidden items-center gap-8 text-[0.95rem] text-ivoire-100/85 lg:flex" aria-label="Navigation principale">
+        <div class="group relative">
+          <button type="button" class="flex cursor-pointer items-center gap-1.5 py-6 transition-colors hover:text-or-300 group-focus-within:text-or-300" aria-haspopup="true">
+            Nos expertises
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.5L8 10.5L12 6.5"/></svg>
+          </button>
+          <div class="invisible absolute left-1/2 top-full w-[19rem] -translate-x-1/2 translate-y-1 rounded-2xl border border-white/10 bg-nuit-950/95 p-2 opacity-0 shadow-soft backdrop-blur transition duration-200 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+            <a class="block rounded-xl px-4 py-3 transition-colors hover:bg-white/5 hover:text-or-300" href="/timbres-rares-francais">Timbres rares français</a>
+            <a class="block rounded-xl px-4 py-3 transition-colors hover:bg-white/5 hover:text-or-300" href="/vendre-collection-timbres">Collections &amp; albums</a>
+            <a class="block rounded-xl px-4 py-3 transition-colors hover:bg-white/5 hover:text-or-300" href="/timbres-internationaux">Timbres internationaux</a>
+            <a class="block rounded-xl px-4 py-3 transition-colors hover:bg-white/5 hover:text-or-300" href="/erreurs-blocs-feuillets">Erreurs &amp; blocs-feuillets</a>
+          </div>
+        </div>
+        <a class="transition-colors hover:text-or-300" href="/comment-ca-marche">Comment ça marche</a>
+        <a class="transition-colors hover:text-or-300" href="/guides">Guides</a>
+        <a class="transition-colors hover:text-or-300" href="/faq">FAQ</a>
+        <a href="/estimation-timbres" class="btn btn-gold !min-h-[2.75rem] !px-5 !text-[0.9rem]">Estimation gratuite</a>
+      </nav>
+
+      <button id="menu-btn" type="button" class="grid h-11 w-11 cursor-pointer place-items-center rounded-full border border-white/20 text-ivoire-50 lg:hidden" aria-expanded="false" aria-controls="menu-mobile" aria-label="Ouvrir le menu">
+        <svg id="ico-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
+        <svg id="ico-close" class="hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+
+    <div id="menu-mobile" class="hidden max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-white/10 bg-nuit-950 lg:hidden">
+      <nav class="container-x flex flex-col py-4 text-ivoire-100" aria-label="Navigation mobile">
+        <p class="pb-1 pt-3 text-[0.75rem] font-medium uppercase tracking-[0.22em] text-or-300">Nos expertises</p>
+        <a class="flex min-h-12 items-center border-b border-white/10" href="/timbres-rares-francais">Timbres rares français</a>
+        <a class="flex min-h-12 items-center border-b border-white/10" href="/vendre-collection-timbres">Collections &amp; albums</a>
+        <a class="flex min-h-12 items-center border-b border-white/10" href="/timbres-internationaux">Timbres internationaux</a>
+        <a class="flex min-h-12 items-center border-b border-white/10" href="/erreurs-blocs-feuillets">Erreurs &amp; blocs-feuillets</a>
+        <a class="flex min-h-12 items-center border-b border-white/10 pt-2 text-lg" href="/comment-ca-marche">Comment ça marche</a>
+        <a class="flex min-h-12 items-center border-b border-white/10 text-lg" href="/guides">Guides</a>
+        <a class="flex min-h-12 items-center border-b border-white/10 text-lg" href="/faq">FAQ</a>
+        <a href="/estimation-timbres" class="btn btn-gold my-5">Faire estimer mes timbres</a>
+      </nav>
+    </div>
+  </header>

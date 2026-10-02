@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{title}}</title>
+  <meta name="description" content="{{description}}">
+  <meta name="robots" content="{{robots}}">
+  <meta name="theme-color" content="#0A1630">
+  {{canonical}}
+  <meta property="og:type" content="{{ogtype}}">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="{{siteName}}">
+  <meta property="og:title" content="{{title}}">
+  <meta property="og:description" content="{{description}}">
+  <meta name="twitter:card" content="summary_large_image">
+  {{image}}
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230A1630'/%3E%3Crect x='8' y='7' width='16' height='18' fill='none' stroke='%23DEC27D' stroke-width='2' stroke-dasharray='2 2'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Geist:wght@300..700&display=swap" rel="stylesheet">
+  {{head-extra}}
+  <link rel="stylesheet" href="/dist/style.css">
+  {{jsonld}}
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a href="#contenu" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-or-300 focus:px-5 focus:py-3 focus:text-nuit-950">Aller au contenu</a>
+  {{header}}
+  <main id="contenu">
+{{content}}
+  </main>
+  {{footer}}
+  <div id="mobile-cta" class="fixed inset-x-0 bottom-0 z-40 translate-y-full border-t border-white/10 bg-nuit-950/95 p-3 backdrop-blur transition-transform duration-300 lg:hidden" style="padding-bottom: max(0.75rem, env(safe-area-inset-bottom));">
+    <a href="/estimation-timbres" class="btn btn-gold w-full">Faire estimer mes timbres</a>
+  </div>
+  <script src="/assets/js/site.js" defer></script>
+</body>
+</html>
