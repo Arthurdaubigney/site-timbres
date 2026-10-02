@@ -1,0 +1,214 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Motion tokens — transitions.dev */
+:root {
+  --duration-quick: 150ms;
+  --duration-fast: 250ms;
+  --duration-very-slow: 500ms;
+  --ease-smooth-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --stagger-dur: 500ms;
+  --stagger-distance: 12px;
+  --stagger-stagger: 40ms;
+  --stagger-blur: 3px;
+  --stagger-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --acc-expand: 250ms;
+  --acc-collapse: 250ms;
+  --acc-chevron: 250ms;
+  --acc-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    @apply bg-ivoire-100 font-sans text-nuit-900 antialiased;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+  }
+  h1, h2, h3 {
+    @apply font-display;
+    font-variation-settings: "SOFT" 30, "WONK" 0;
+    letter-spacing: -0.02em;
+  }
+  :focus-visible {
+    outline: 2px solid #B8924A;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  ::selection {
+    background: #DEC27D;
+    color: #0A1630;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-12;
+  }
+  .section-y {
+    padding-block: clamp(4.5rem, 9vw, 8rem);
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-[0.78rem] font-medium uppercase tracking-[0.22em] text-or-700;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply h-px w-8 bg-current opacity-70;
+  }
+  .on-dark .eyebrow,
+  .eyebrow-dark {
+    @apply text-or-300;
+  }
+
+  /* Boutons */
+  .btn {
+    @apply inline-flex min-h-[3.25rem] cursor-pointer items-center justify-center gap-2.5 rounded-full px-7 text-[0.98rem] font-semibold tracking-tight;
+    transition: transform var(--duration-quick) var(--ease-smooth-out),
+      background-color var(--duration-fast) var(--ease-smooth-out),
+      box-shadow var(--duration-fast) var(--ease-smooth-out),
+      color var(--duration-fast) var(--ease-smooth-out),
+      border-color var(--duration-fast) var(--ease-smooth-out);
+  }
+  .btn:active {
+    transform: translateY(1px) scale(0.985);
+  }
+  .btn-gold {
+    @apply bg-or-300 text-nuit-950 shadow-gold hover:bg-or-200;
+  }
+  .btn-gold:hover {
+    transform: translateY(-2px);
+  }
+  .btn-ghost-dark {
+    @apply border border-white/25 text-ivoire-100 hover:border-or-300 hover:text-or-200;
+  }
+  .btn-nuit {
+    @apply bg-nuit-900 text-ivoire-50 hover:bg-nuit-700;
+  }
+  .btn .arrow {
+    transition: transform var(--duration-fast) var(--ease-smooth-out);
+  }
+  .btn:hover .arrow {
+    transform: translateX(4px);
+  }
+
+  /* Cadre de timbre dentelé */
+  .stamp {
+    --pb: #0A1630;
+    --paper: #F5EFE3;
+    padding: 16px;
+    background:
+      radial-gradient(circle at 8px 0, var(--pb) 5px, transparent 5.5px) 0 0 / 16px 10px repeat-x,
+      radial-gradient(circle at 8px 10px, var(--pb) 5px, transparent 5.5px) 0 100% / 16px 10px repeat-x,
+      radial-gradient(circle at 0 8px, var(--pb) 5px, transparent 5.5px) 0 0 / 10px 16px repeat-y,
+      radial-gradient(circle at 10px 8px, var(--pb) 5px, transparent 5.5px) 100% 0 / 10px 16px repeat-y,
+      var(--paper);
+    box-shadow: 0 40px 80px -40px rgba(0, 0, 0, 0.7);
+  }
+  .stamp-light {
+    --pb: #F5EFE3;
+    --paper: #FBF8F1;
+    box-shadow: 0 30px 60px -34px rgba(6, 13, 29, 0.45);
+  }
+
+  /* Cartes d'expertise */
+  .expert-card {
+    @apply relative isolate flex min-h-[26rem] flex-col justify-end overflow-hidden rounded-[1.75rem] bg-nuit-900 text-ivoire-100;
+    box-shadow: 0 30px 60px -36px rgba(6, 13, 29, 0.6);
+  }
+  .expert-card img {
+    @apply absolute inset-0 -z-20 h-full w-full object-cover;
+    transition: transform 900ms var(--ease-smooth-out);
+  }
+  .expert-card::after {
+    content: "";
+    @apply absolute inset-0 -z-10;
+    background: linear-gradient(to top, rgba(6, 13, 29, 0.94) 8%, rgba(6, 13, 29, 0.55) 48%, rgba(6, 13, 29, 0.05) 100%);
+  }
+  .expert-card:hover img {
+    transform: scale(1.045);
+  }
+
+  .chip {
+    @apply inline-flex items-center rounded-full border border-white/25 px-3.5 py-1 text-[0.82rem] tracking-wide text-ivoire-100;
+  }
+
+  /* Accordéon FAQ — transitions.dev (accordion) */
+  .t-acc-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows var(--acc-collapse) var(--acc-ease);
+  }
+  .t-acc[data-open="true"] .t-acc-panel {
+    grid-template-rows: 1fr;
+    transition: grid-template-rows var(--acc-expand) var(--acc-ease);
+  }
+  .t-acc-panel-inner {
+    overflow: hidden;
+    opacity: 0;
+    filter: blur(2px);
+    transition: opacity var(--acc-collapse) var(--acc-ease), filter var(--acc-collapse) var(--acc-ease);
+  }
+  .t-acc[data-open="true"] .t-acc-panel-inner {
+    opacity: 1;
+    filter: blur(0);
+    transition: opacity var(--acc-expand) var(--acc-ease), filter var(--acc-expand) var(--acc-ease);
+  }
+  .t-acc-chevron {
+    display: inline-flex;
+    transform: scaleY(1);
+    transform-origin: center;
+    transition: transform var(--acc-chevron) var(--acc-ease);
+  }
+  .t-acc-chevron path {
+    vector-effect: non-scaling-stroke;
+  }
+  .t-acc[data-open="true"] .t-acc-chevron {
+    transform: scaleY(-1);
+  }
+}
+
+/* Révélation par texte — transitions.dev (texts reveal) */
+.js .t-stagger-line,
+.js .reveal {
+  opacity: 0;
+  transform: translateY(var(--stagger-distance));
+  filter: blur(var(--stagger-blur));
+  transition:
+    opacity var(--stagger-dur) var(--stagger-ease),
+    transform var(--stagger-dur) var(--stagger-ease),
+    filter var(--stagger-dur) var(--stagger-ease);
+  transition-delay: calc(var(--i, 0) * 70ms);
+  will-change: transform, opacity, filter;
+}
+.js .t-stagger.is-shown .t-stagger-line,
+.js .reveal.is-in {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .t-stagger-line,
+  .reveal,
+  .t-acc-panel,
+  .t-acc-panel-inner,
+  .t-acc-chevron,
+  .btn,
+  .btn .arrow,
+  .expert-card img {
+    transition: none !important;
+  }
+  .js .t-stagger-line,
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}

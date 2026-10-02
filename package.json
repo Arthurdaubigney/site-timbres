@@ -1,0 +1,13 @@
+{
+  "name": "expertise-philatelie",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site vitrine Expertise Philatélie - estimation et rachat de timbres rares",
+  "scripts": {
+    "build": "tailwindcss -i ./src/input.css -o ./dist/style.css --minify",
+    "dev": "tailwindcss -i ./src/input.css -o ./dist/style.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}
