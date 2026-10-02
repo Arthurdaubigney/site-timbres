@@ -228,6 +228,9 @@
   .marquee.is-paused .marquee-track {
     animation-play-state: paused;
   }
+  .marquee-item .stamp {
+    height: 100%;
+  }
   .marquee-item {
     flex: none;
     width: clamp(15rem, 22vw, 19rem);
