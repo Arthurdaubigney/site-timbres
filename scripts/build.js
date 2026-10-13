@@ -75,6 +75,11 @@ function render(file) {
     usedFaq = (usedFaq || []).concat(items);
     return faqHtml(items);
   });
+  // {{fig:image|alt|légende|ratio}} -> figure photo (ratio : wide, tall, square)
+  content = content.replace(/\{\{fig:([^|}]+)\|([^|}]*)\|([^|}]*)\|?([^}]*)\}\}/g, (_, img, alt, cap, ratio) => {
+    const aspect = { wide: "aspect-[16/10]", tall: "aspect-[4/5]", square: "aspect-square" }[ratio.trim()] || "aspect-[16/10]";
+    return `<figure class="reveal overflow-hidden rounded-[1.5rem] bg-nuit-900 shadow-soft"><picture><source srcset="/assets/img/${img}.webp" type="image/webp"><img src="/assets/img/${img}.jpg" alt="${esc(alt)}" loading="lazy" class="w-full object-cover ${aspect}"></picture>${cap.trim() ? `<figcaption class="bg-ivoire-50 px-5 py-3 text-[0.88rem] leading-snug text-nuit-700">${cap}</figcaption>` : ""}</figure>`;
+  });
   // {{include:nom}} -> partiel
   content = content.replace(/\{\{include:([\w-]+)\}\}/g, (_, n) => partial(n));
 
