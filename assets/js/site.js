@@ -79,6 +79,14 @@
     });
   }
 
+  /* Tally : redirection vers /merci une fois le formulaire envoyé */
+  window.addEventListener('message', function (e) {
+    if (e.origin !== 'https://tally.so') return;
+    var data = e.data;
+    try { if (typeof data === 'string') data = JSON.parse(data); } catch (_) { return; }
+    if (data && data.event === 'Tally.FormSubmitted') window.location.href = '/merci';
+  });
+
   var y = d.getElementById('annee');
   if (y) y.textContent = new Date().getFullYear();
 })();
