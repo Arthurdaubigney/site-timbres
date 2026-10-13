@@ -11,7 +11,7 @@ Site multi-pages (HTML5 + Tailwind CSS) d'estimation et de rachat de timbres rar
 
 ## Formulaire d'estimation
 
-Le formulaire se place dans `src/partials/form-slot.html` (affiché sur `/estimation-timbres`). Remplacer le bloc `data-form-placeholder` par le code d'intégration, puis relancer `npm run build`.
+Le formulaire Tally (`KY7AlV`) est intégré dans `src/partials/form-slot.html` (affiché sur `/estimation-timbres`). Pour le changer, modifier l'identifiant dans ce fichier puis relancer `npm run build`.
 
 ## À compléter
 
