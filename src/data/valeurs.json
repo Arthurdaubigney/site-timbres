@@ -1,0 +1,29 @@
+[
+  {
+    "img": "napoleon-1f-carmin",
+    "alt": "Timbre français de 1 franc carmin à l’effigie de Napoléon III (1853), non dentelé",
+    "price": "≈ 3 000 €",
+    "state": "oblitéré",
+    "name": "Napoléon III, 1 franc carmin",
+    "year": "France, 1853",
+    "note": "Le grand timbre de l’Empire non dentelé."
+  },
+  {
+    "img": "ceres-1f-carmin",
+    "alt": "Timbre français Cérès de 1 franc carmin (1849) avec oblitération",
+    "price": "≈ 900 €",
+    "state": "oblitéré",
+    "name": "Cérès, 1 franc carmin",
+    "year": "France, 1849",
+    "note": "L’un des tout premiers timbres français."
+  },
+  {
+    "img": "ceres-40c-orange",
+    "alt": "Timbre français Cérès de 40 centimes orange (1849)",
+    "price": "≈ 550 €",
+    "state": "oblitéré",
+    "name": "Cérès, 40 centimes orange",
+    "year": "France, 1849",
+    "note": "Un classique recherché des collectionneurs."
+  }
+]

@@ -61,6 +61,33 @@ function faqHtml(items) {
     .join("\n");
 }
 
+function stampsHtml() {
+  const file = path.join(SRC, "data", "valeurs.json");
+  const items = JSON.parse(fs.readFileSync(file, "utf8")).filter((s) => {
+    const ok = fs.existsSync(path.join(ROOT, "assets", "img", s.img + ".jpg"));
+    if (!ok) console.warn("⚠ Image manquante pour le bandeau :", s.img);
+    return ok;
+  });
+  const card = (s, hidden) => `          <li class="marquee-item"${hidden ? ' aria-hidden="true"' : ""}>
+            <figure class="stamp stamp-light">
+              <div class="grid aspect-[4/5] place-items-center bg-nuit-900 p-3">
+                <picture>
+                  <source srcset="/assets/img/${s.img}.webp" type="image/webp">
+                  <img src="/assets/img/${s.img}.jpg" alt="${hidden ? "" : esc(s.alt)}" width="500" height="600" loading="lazy" class="max-h-full w-full object-contain">
+                </picture>
+              </div>
+              <figcaption class="mt-4 px-1 text-nuit-900">
+                <span class="block font-display text-[1.3rem] font-medium leading-none text-or-700">${s.price}</span>
+                <span class="mt-1 block text-[0.72rem] font-medium uppercase tracking-[0.12em] text-nuit-600">Cote catalogue · ${s.state}</span>
+                <span class="mt-3 block font-display text-[1.2rem] leading-tight">${s.name}</span>
+                <span class="mt-1 block text-[0.72rem] font-medium uppercase tracking-[0.18em] text-or-700">${s.year}</span>
+                <span class="mt-2 block text-[0.92rem] leading-snug text-nuit-700">${s.note}</span>
+              </figcaption>
+            </figure>
+          </li>`;
+  return [0, 1, 2, 3].map((n) => items.map((s) => card(s, n > 0)).join("\n")).join("\n");
+}
+
 function render(file) {
   const rel = path.relative(path.join(SRC, "pages"), file).replace(/\\/g, "/");
   const { meta, body } = parsePage(file);
@@ -82,6 +109,8 @@ function render(file) {
   });
   // {{include:nom}} -> partiel
   content = content.replace(/\{\{include:([\w-]+)\}\}/g, (_, n) => partial(n));
+  // {{stamps}} -> bandeau défilant des timbres (src/data/valeurs.json), 1 série visible + 3 copies masquées
+  content = content.replace(/\{\{stamps\}\}/g, () => stampsHtml());
 
   const canonical = SITE_URL ? SITE_URL + (urlPath === "/" ? "/" : urlPath) : "";
   const title = meta.title;
