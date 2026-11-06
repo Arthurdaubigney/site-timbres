@@ -15,9 +15,9 @@ const config = JSON.parse(fs.readFileSync(path.join(ROOT, "site.config.json"), "
 const faqData = JSON.parse(fs.readFileSync(path.join(SRC, "data", "faq.json"), "utf8"));
 
 function resolveSiteUrl() {
-  let url = process.env.SITE_URL || "";
+  // Priorité : variable SITE_URL, puis site.config.json, puis domaine de production Vercel.
+  let url = process.env.SITE_URL || config.siteUrl || "";
   if (!url && process.env.VERCEL_PROJECT_PRODUCTION_URL) url = "https://" + process.env.VERCEL_PROJECT_PRODUCTION_URL;
-  if (!url) url = config.siteUrl || "";
   return url.replace(/\/+$/, "");
 }
 const SITE_URL = resolveSiteUrl();
@@ -175,7 +175,8 @@ function render(file) {
     .replace("{{head-extra}}", meta.preload ? `<link rel="preload" as="image" href="${meta.preload}" type="image/webp">` : "")
     .replace(/\{\{title\}\}/g, esc(title))
     .replace(/\{\{description\}\}/g, esc(description))
-    .replace("{{canonical}}", canonical ? `<link rel="canonical" href="${canonical}">\n  <meta property="og:url" content="${canonical}">` : "")
+    // Balises canonical et og:url : désactivées avec "canonical": false dans site.config.json
+    .replace("{{canonical}}", canonical && config.canonical !== false ? `<link rel="canonical" href="${canonical}">\n  <meta property="og:url" content="${canonical}">` : "")
     .replace("{{image}}", image ? `<meta property="og:image" content="${image}">\n  <meta name="twitter:image" content="${image}">` : "")
     .replace("{{ogtype}}", meta.type === "article" ? "article" : "website")
     .replace("{{robots}}", robots)

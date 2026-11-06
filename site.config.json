@@ -1,6 +1,7 @@
 {
   "siteName": "Expertise Philatélie",
-  "siteUrl": "",
+  "siteUrl": "https://www.maison-philatelie.fr",
+  "canonical": false,
   "tagline": "Expertise, estimation et rachat de timbres rares et de collections philatéliques.",
   "defaultImage": "/assets/img/hero-loupe.jpg"
 }
