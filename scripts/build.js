@@ -172,6 +172,12 @@ function render(file) {
   content = content.replace("{{breadcrumb}}", breadcrumbHtml);
   const robots = meta.robots || "index, follow, max-image-preview:large";
   const html = layout
+    // Conversion Google Ads : uniquement sur les pages avec "conversion: true" (page /merci)
+    .replace("{{conversion}}", meta.conversion === "true" ? `  <!-- Event snippet for Formulaire - Philatélie (code) conversion page -->
+  <script>
+    gtag('event', 'conversion', {'send_to': 'AW-18503417665/TY1SCITGjbwdEMH-jvdE'});
+  </script>
+` : "")
     .replace("{{head-extra}}", meta.preload ? `<link rel="preload" as="image" href="${meta.preload}" type="image/webp">` : "")
     .replace(/\{\{title\}\}/g, esc(title))
     .replace(/\{\{description\}\}/g, esc(description))
