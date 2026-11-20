@@ -295,6 +295,14 @@
   filter: blur(0);
 }
 
+/* Bandeau de consentement : réserve la place en bas de page et masque la barre d'appel mobile */
+html[data-consent-visible] body {
+  padding-bottom: var(--consent-h, 0px);
+}
+html[data-consent-visible] #mobile-cta {
+  display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

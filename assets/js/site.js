@@ -87,6 +87,58 @@
     if (data && data.event === 'Tally.FormSubmitted') window.location.href = '/merci';
   });
 
+  /* Bandeau de consentement aux cookies (Google Consent Mode v2, mode avancé).
+     Le consentement est refusé par défaut (script du <head>) ; le choix est mémorisé 6 mois. */
+  var banner = d.getElementById('consent-banner');
+  if (banner) {
+    var KEY = 'ep_consent';
+    var SIX_MONTHS = 15778800000;
+    var root = d.documentElement;
+    function setConsent(value) {
+      var state = value === 'granted' ? 'granted' : 'denied';
+      gtag('consent', 'update', {
+        ad_storage: state,
+        ad_user_data: state,
+        ad_personalization: state,
+        analytics_storage: state
+      });
+    }
+    function readChoice() {
+      try {
+        var c = JSON.parse(localStorage.getItem(KEY) || 'null');
+        if (c && (c.v === 'granted' || c.v === 'denied') && Date.now() - c.t < SIX_MONTHS) return c.v;
+        localStorage.removeItem(KEY);
+      } catch (e) {}
+      return null;
+    }
+    function saveChoice(v) {
+      try { localStorage.setItem(KEY, JSON.stringify({ v: v, t: Date.now() })); } catch (e) {}
+    }
+    function reserveSpace() {
+      root.style.setProperty('--consent-h', banner.offsetHeight + 'px');
+    }
+    function openBanner() {
+      banner.hidden = false;
+      root.setAttribute('data-consent-visible', '');
+      reserveSpace();
+    }
+    function closeBanner() {
+      banner.hidden = true;
+      root.removeAttribute('data-consent-visible');
+      root.style.removeProperty('--consent-h');
+    }
+    function choose(v) {
+      setConsent(v);
+      saveChoice(v);
+      closeBanner();
+    }
+    d.getElementById('consent-accept').addEventListener('click', function () { choose('granted'); });
+    d.getElementById('consent-refuse').addEventListener('click', function () { choose('denied'); });
+    d.querySelectorAll('[data-consent-open]').forEach(function (b) { b.addEventListener('click', openBanner); });
+    window.addEventListener('resize', function () { if (!banner.hidden) reserveSpace(); });
+    if (readChoice() === null) openBanner();
+  }
+
   var y = d.getElementById('annee');
   if (y) y.textContent = new Date().getFullYear();
 })();
